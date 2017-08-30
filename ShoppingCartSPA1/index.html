@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/html" id="producttr">
+        <tr>
+            <td>{{Name}}</td><td>{{Price}}</td>
+        <td>
+            </td>
+        <td>
+            <input type="button" value="Add To Cart"></td>
+        </tr>
+    </script>
+    <script>
+        function GetProducts() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('Get', 'api/GetProducts');
+
+            xhr.onload = function () {
+                if (xhr.response && xhr.response != '') {
+                    var products = JSON.parse(xhr.response);
+
+                    var mainbody = document.getElementById('mainbody');
+
+                    mainbody.innerHTML = '';
+                    var htmlcode = '';
+
+                    for (var i = 0; i < products.length; i++) {
+                        var producttr = document.getElementById('producttr').innerHTML;
+                        producttr = producttr.replace('{{Name}}', products[i].Name);
+                        producttr = producttr.replace('{{Price}}', products[i].Price);
+                        mainbody.innerHTML += producttr;
+                    }
+                }
+            };
+
+            xhr.send(null);
+
+        }
+
+        function AddToCart() {
+
+        }
+    </script>
+</head>
+<body onload="GetProducts()">
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Image</td>
+            </tr>
+        </thead>
+        <tbody id="mainbody"></tbody>
+    </table>
+</body>
+</html>
