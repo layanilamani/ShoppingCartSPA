@@ -18,6 +18,7 @@ namespace ShoppingCartSPA1
         public string Name { get; set; }
         public double Price { get; set; }
         public int CatagoryId { get; set; }
+        public string Imageurl { get; set; }
     
         public virtual Category Category { get; set; }
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShoppingCartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShoppingCartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,6 +20,7 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="CatagoryId" Type="int" Nullable="false" />
+          <Property Name="Imageurl" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CatagoryProduct">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
@@ -41,8 +42,7 @@
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingCartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -63,6 +63,7 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="CatagoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_CatagoryProduct" FromRole="Products" ToRole="Categories" />
+          <Property Name="Imageurl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CatagoryProduct">
           <End Role="Categories" Type="Self.Category" Multiplicity="1" />
@@ -101,6 +102,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ShoppingCartModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Imageurl" ColumnName="Imageurl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
