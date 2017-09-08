@@ -20,9 +20,8 @@ namespace ShoppingCartSPA1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-    }
-    
-      protected void Application_PostAuthorizeRequest()
+
+        protected void Application_PostAuthorizeRequest()
         {
             if (IsWebApiRequest())
             {
@@ -34,4 +33,7 @@ namespace ShoppingCartSPA1
         {
             return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith(WebApiConfig.UrlPrefixRelative);
         }
+    }
+    
+   
 }
