@@ -5,6 +5,7 @@
     <script src="Scripts/jquery-1.10.2.min.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
         @import url(https://fonts.googleapis.com/css?family=Oswald:300,400);
@@ -52,6 +53,7 @@
                 font-size: 1.3em;
                 font-weight: 400;
                 margin-bottom: 5px;
+                margin-top:10px;
                 text-transform: uppercase;
             }
 
@@ -117,18 +119,26 @@
         body {
             background-color: #212121;
         }
+
+        .navbar-brand {
+            color:white;
+        }
+
+        .ion-plus-round {
+            cursor:pointer;
+        }
     </style>
-    <script type="text/html" id="producttr"> 
+    <script type="text/html" id="producttr">
         <div class="col-md-12 col-lg-6 snip1492">
             <img src="/Images/{{Image}}" alt="sample60" />
             <div>
                 <h3>{{Name}}</h3>
                 <p>To make a bad day worse, spend it wishing for the impossible.</p>
                 <div class="price">
-                   ${{Price}}
+                    ${{Price}}
                 </div>
-            </div><i class="ion-plus-round"></i>
-            <a href="#"></a>
+            </div><i class="ion-plus-round" onclick="AddToCart({{Id}})"></i>
+            
         </div>
     </script>
     <script>
@@ -150,6 +160,7 @@
                         producttr = producttr.replace('{{Name}}', products[i].Name);
                         producttr = producttr.replace('{{Price}}', products[i].Price);
                         producttr = producttr.replace('{{Image}}', products[i].Imageurl);
+                        producttr = producttr.replace('{{Id}}', products[i].Id);
                         mainbody.innerHTML += producttr;
                     }
                 }
@@ -159,8 +170,17 @@
 
         }
 
-        function AddToCart() {
+        function AddToCart(pid) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('Get', 'api/AddToCart/'+pid);
 
+            xhr.onload = function () {
+                if (xhr.response && xhr.response != '') {
+                    
+                }
+            };
+
+            xhr.send(null);
         }
     </script>
 </head>
@@ -178,18 +198,14 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>                
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Default</a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-            </ul>
+                <li><a>Cart</a></li>
+               
+            </ul>           
         </div><!--/.nav-collapse -->
     </div>
     <div id="mainbody" class="container">
 
     </div>
+
 </body>
 </html>

@@ -11,6 +11,8 @@ namespace ShoppingCartSPA1.Controllers
     public class Item
     {
         public int Count { get; set; }
+
+        public Product Product { get; set; }
     }
     public class ShoppingCart
     {
@@ -30,7 +32,9 @@ namespace ShoppingCartSPA1.Controllers
             return db.Products.ToList();
         }
 
-        public void AddToCart(Item item)
+        [HttpGet]
+        [Route("api/AddToCart/{Id}")]
+        public void AddToCart(int Id)
         {
             ShoppingCart sc = null;
 
@@ -41,6 +45,15 @@ namespace ShoppingCartSPA1.Controllers
 
             if (sc.Items == null)
                 sc.Items = new List<Item>();
+
+            var db = new ShoppingCartEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var prod = db.Products.Find(Id);
+
+            Item item = new Item();
+            item.Count = 1;
+            item.Product = prod;
 
             sc.Items.Add(item);
 
