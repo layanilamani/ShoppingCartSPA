@@ -141,6 +141,17 @@
             
         </div>
     </script>
+    <script type="text/html" id="sc_template">
+        <div class="col-md-4">
+            {{Name}}
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="quantity" value="" />
+        </div>
+        <div class="col-md-4">
+            <input type="button" name="btn_remove" value="Remove" />
+        </div>
+    </script>
     <script>
         function GetProducts() {
             var xhr = new XMLHttpRequest();
@@ -193,19 +204,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Aptech Super Store</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Products</a></li>
                 <li><a>Cart</a></li>
-               
+                <li><a>Checkout</a></li>               
             </ul>           
         </div><!--/.nav-collapse -->
     </div>
     <div id="mainbody" class="container">
 
     </div>
+    <div id="sc_view" class="container">
+        <div class="row">
 
+        </div>
+    </div>
 </body>
 </html>

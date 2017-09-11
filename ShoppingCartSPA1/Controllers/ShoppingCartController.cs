@@ -59,5 +59,12 @@ namespace ShoppingCartSPA1.Controllers
 
             HttpContext.Current.Session["sc"] = sc;
         }
+
+        [HttpGet]
+        [Route("api/GetCart")]
+        public ShoppingCart GetCart()
+        {
+            return null;//TODO HERE!
+        }
     }
 }
